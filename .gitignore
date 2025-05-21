@@ -1,2 +1,3 @@
-* .csv
+# ignore csv files
+*.csv
 secret.py
