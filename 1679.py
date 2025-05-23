@@ -1,26 +1,24 @@
-
-
 def maxOperations(nums, k: int):
+    left, right = 0, (len(nums) - 1)
+    nums.sort()
     result = 0
-    flag = True
-    for i in range(len(nums)):
-        for j in range(len(nums)):
-            if i != j:
-                a, b = nums[i], nums[j]
-                result += checkSum(a, b, k)
+    while left < right:
+        sum = nums[left] + nums[right]
+        print(sum, nums[left], nums[right])
+        if sum == k:
+            result += 1
+            left += 1
+            right -= 1
+        elif sum > k:
+            right -= 1
+        else:
+            left += 1
 
-    print(result)
+    return result
 
-
-def run
-
-
-def checkSum(i, j, k):
-    if (i + j) == k:
-        print(f"{i} + {j} = ", k)
-        return 1
-    else: return 0
-
-
-nums = [3,1,3,4,3]
-maxOperations(nums, 6)
+# [3,1,3,4,3], k=6
+#[1,2,3,4], k=5
+# [4,4,1,3,1,3,2,2,5,5,1,5,2,1,2,3,5,4], k = 2
+# sorted: [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 5]
+nums = [4,4,1,3,1,3,2,2,5,5,1,5,2,1,2,3,5,4]
+maxOperations(nums, 2)
